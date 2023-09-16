@@ -31,6 +31,7 @@ class CustomSearchField extends StatelessWidget {
         ),
         child: TypeAheadField(
             hideOnLoading: false,
+
             suggestionsCallback: (pattern) {
               List<String> empty = [];
 
@@ -49,6 +50,8 @@ class CustomSearchField extends StatelessWidget {
             textFieldConfiguration: TextFieldConfiguration(
                 onChanged: (val) {},
                 controller: controller,
+
+
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -56,6 +59,7 @@ class CustomSearchField extends StatelessWidget {
                 ),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
+                  hintText: 'Search for Places'
                 )),
             itemBuilder: (BuildContext context, String itemData) {
               return Padding(

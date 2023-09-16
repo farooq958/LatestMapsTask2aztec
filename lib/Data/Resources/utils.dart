@@ -12,11 +12,13 @@ class AppUtils {
     print(dest.toString());
 
     PolylinePoints polylinePoints = PolylinePoints();
+
+    ///this is causing issue needs to check but time issue
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
       'AIzaSyDkxGbStd_8WAnlufPb4OgOl3_kctTUbb4', // Your Google Map Key
       PointLatLng(pickUp.latitude, pickUp.longitude),
       PointLatLng(dest.latitude, dest.longitude),
-      travelMode: TravelMode.driving,
+      travelMode: TravelMode.transit,
     );
     print(result);
     if (result.points.isNotEmpty) {

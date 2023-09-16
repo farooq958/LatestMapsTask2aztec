@@ -11,15 +11,16 @@ class GetCurrentLocationCubit extends Cubit<GetCurrentLocationState> {
   getCurrentLocation() async {
     await Future.delayed(const Duration(milliseconds: 20));
     emit(GetCurrentLocationLoading());
-    Permission.location.request();
+   await Permission.location.request();
     var perm = await Permission.location.status;
     if (perm.isGranted) {
+      print("granted");
       await AppUtils.getCurrentLocation().then((value) async {
         print("value is Here $value ");
         print(value!.latitude);
         if (!value.latitude.isNaN) {
           String location = await AppUtils()
-              .getAddressFromLatLng(LatLng(value!.latitude, value.longitude));
+              .getAddressFromLatLng(LatLng(value.latitude, value.longitude));
           if (location.isNotEmpty) {
             emit(GetCurrentLocationLoaded(
                 latLng: LatLng(value.latitude, value.longitude),
